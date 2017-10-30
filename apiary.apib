@@ -1,80 +1,51 @@
-FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+FORMAT: X-1A
 
-# Welcome Sunil
+# Machines API 
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+The Example API for Dredd API Blueprint testing tool
 
-## Questions Collection [/questions]
+# Group Machines
 
-### List All Questions [GET]
+# Machines collection [/machines]
 
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
+## Create a Machine [POST]
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+          "type": "bulldozer",
+          "name": "willy"
         }
 
-+ Response 201 (application/json)
++ Response 202 (application/json)
+        
+        {
+          "message": "Accepted"
+        }
 
-    + Headers
+## Retreive all Machines [GET]
 
-            Location: /questions/2
++ Response 200 (application/json)
 
-    + Body
+        [{
+            "_id": "52341870ed55224b15ff07ef",
+            "type": "bulldozer",
+            "name": "willy"
+        }]
 
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+# Machine [/machines/{name}]
++ Parameters
+  + name (required,`willy`)
+
+
+## Retrieve a Machine [GET]
++ Response 200 (application/json)
+
+        {
+          "type": "bulldozer",
+          "name": "willy",
+          "_id": "5229c6e8e4b0bd7dbb07e29c"
+        }
+
+## Delete Message [DELETE]
+
++ Response 204
